@@ -23,7 +23,6 @@ module.exports = function (grunt) {
             numFiles = 0;
             me.files.forEach(function(f) {
                 f.src.filter(function(filepath) {
-                    grunt.log.writeln("filter " + filepath);
                     if (!grunt.file.exists(filepath)) {
                         grunt.log.warn('Source file "' + filepath + '" not found.');
                         return false;
@@ -31,8 +30,6 @@ module.exports = function (grunt) {
                         return true;
                     }
                 }).map(function(filepath) {
-                    grunt.log.writeln("readFile " + filepath);
-                    console.log(mapper);
                     mapper.readFile(filepath, true);
                     numFiles++;
                 });
