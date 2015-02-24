@@ -12,13 +12,31 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('extjs_dependencies', 'Uses falafel to figure out in what order to load your ExtJs app files.', function() {
         var opts = this.options(),
             doneFn = this.async(),
-            target = this.target;
+            target = this.target,
+            me = this;
 
         require('./lib/mapper').init(grunt, opts).done(function (mapper) {
             var numFiles, deps, required, diff;
 
-            grunt.log.writeln('Adding ' + opts.src.length + ' directories to classpath...');
-            numFiles = mapper.addDir(opts.src);
+            grunt.log.writeln('Adding ' + me.files.length + ' files to classpath...');
+
+            numFiles = 0;
+            me.files.forEach(function(f) {
+                f.src.filter(function(filepath) {
+                    grunt.log.writeln("filter " + filepath);
+                    if (!grunt.file.exists(filepath)) {
+                        grunt.log.warn('Source file "' + filepath + '" not found.');
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }).map(function(filepath) {
+                    grunt.log.writeln("readFile " + filepath);
+                    console.log(mapper);
+                    mapper.readFile(filepath, true);
+                    numFiles++;
+                });
+            });
             grunt.log.ok('Done, found ' + numFiles + ' files.');
 
             grunt.log.writeln('Resolving dependencies...');

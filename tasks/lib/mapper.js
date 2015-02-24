@@ -83,6 +83,8 @@ exports.init = function (grunt, opts, cb) {
         }
         return p;
     }
+    
+    exports.readFile = readFile;
 
     exports.addDir = function (dirs, parse) {
         if (!Array.isArray(dirs)) {
