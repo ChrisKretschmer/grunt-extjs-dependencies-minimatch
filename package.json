@@ -8,10 +8,10 @@
     "email": "chris@lunaiten.de"
   },
   "contributors": [
-      {
-        "name": "Christofer",
-        "email": "christoferpak@gmail.com"
-      }
+    {
+      "name": "Christofer",
+      "email": "christoferpak@gmail.com"
+    }
   ],
   "repository": {
     "type": "git",
@@ -49,9 +49,12 @@
     "grunt": "~0.4.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": ">=0.4.0"
   },
   "keywords": [
-    "gruntplugin", "extjs", "grunt", "sencha"
+    "gruntplugin",
+    "extjs",
+    "grunt",
+    "sencha"
   ]
 }
